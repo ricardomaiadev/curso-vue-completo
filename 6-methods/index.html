@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+  <div id="app">
+    <button @click="puxarAcoes"> Puxar Ações </button>
+
+    <input v-model="acoes" type="text" >
+    
+  </div>
+
+  <!-- https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_c96145aa87a443aabc14fb5be2da674a -->
+
+  <script>
+
+const vm = new Vue({
+  el: "#app",
+  data: {
+    acoes: null,
+    
+  },
+  methods: {
+    puxarAcoes() {
+      fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .then(response => response.json())
+        .then(json => {
+          console.log(this.acoes = json.bpi.USD.description);
+        })
+    }
+  }
+})
+
+  </script>
+
+</body>
+</html>
