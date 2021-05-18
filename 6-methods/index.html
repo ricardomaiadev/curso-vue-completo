@@ -10,9 +10,9 @@
 <body>
 
   <div id="app">
-    <p> Descrição: {{acoes.bpi.USD.description}}</p>
-    <p> Codigo: {{acoes.bpi.USD.code}}</p>
-    <p> Simbolo: {{acoes.bpi.USD.symbol}}</p>
+    <p> Descrição: {{acoes.bpi}}</p>
+    <p> Codigo: {{arqx.description}}</p>
+    <!-- <p> Simbolo: {{acoes.bpi.USD.symbol}}</p> -->
 
     <button @click="puxarAcoes"> Puxar Ações </button>
 
@@ -26,7 +26,8 @@
 const vm = new Vue({
   el: "#app",
   data: {
-    acoes: null,
+    acoes: {},
+    arqx: {},
     
   },
   methods: {
@@ -34,8 +35,8 @@ const vm = new Vue({
       fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
         .then(response => response.json())
         .then(json => {
-          console.log(this.acoes = json.bpi.USD.description);
-          // console.log(this.acoes = json);
+          this.acoes = json;
+          this.arqx = json.bpi.USD;
         })
     }
   }
