@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+  <style>
+    .verde {
+      color:green
+    }
+
+    .vermelho {
+      color: red
+    }
+  </style>    
+
+  <div id="app">
+
+    <div>
+      <p>{{USD.description}}</p>
+      <p :class="USD.rate > EUR.rate ? 'verde' : 'vermelho' ">{{USD.rate}}</p>
+      
+    </div>
+    
+    <div>
+      <p>{{EUR.description}}</p>
+      <p :class="EUR.rate > USD.rate ? 'verde' : 'vermelho' ">{{EUR.rate}}</p>
+      
+    </div>
+    
+
+    <button @click="puxarDados">Puxar Dados</button>
+    
+  </div>
+
+  <script>
+
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        USD: {},
+        EUR: {},
+      },
+      methods: {
+        fetchUSD() {
+          fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
+          .then(r => r.json())
+          .then(USD => {
+            this.USD = USD.bpi.USD;
+          })
+        },
+        fetchEUR() {
+          fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
+          .then(r => r.json())
+          .then(EUR => {
+            this.EUR = EUR.bpi.EUR;
+          })
+        },
+        puxarDados() {
+        this.fetchUSD();
+        this.fetchEUR();
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>
