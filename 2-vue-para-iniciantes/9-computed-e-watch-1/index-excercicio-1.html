@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+  <style>
+
+  </style>    
+
+  <div id="app">
+    {{nomeCompleto}}
+  
+  </div>
+
+  <script>
+
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        nome: "Ricardo",
+        sobrenome: "Maia",
+      },
+      computed: {
+        nomeCompleto() {
+          return this.nome + " " + this.sobrenome;
+        }
+      }
+    })
+
+  </script>
+
+</body>
+</html>
