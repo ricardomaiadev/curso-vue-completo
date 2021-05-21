@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+  <div id="app">
+
+    <input type="color" v-model="btn.background"> {{btn.background}}
+    <label for="width">width</label>
+    <input id="width" type="text" v-model="btn.width">
+
+    <label for="height">height</label>
+    <input id="height" type="text" v-model="btn.height">
+
+    <label for="fontSize">Font Size</label>
+    <input id="fontSize" type="text" v-model="btn.fontSize">
+
+    <label for="fontFamily">Font Family</label>
+    <input id="fontFamily" type="text" v-model="btn.fontFamily">
+    
+    <a :style="btn" href="">Clique Aqui</a>
+
+  </div>
+
+  <script>
+
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        btn: {
+          background: "#000",
+          width: "100px",
+          height: "40px",
+          fontSize: "20px",
+          fontFamily: "monospace",
+        }
+
+      },
+    })
+
+  </script>
+  <style>
+
+    label {
+
+      display: block;
+    }
+
+    a {
+      margin-top: 100px;
+      display: block;
+    }
+
+  </style>
+
+</body>
+</html>
