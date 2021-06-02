@@ -20,13 +20,13 @@
     {
         "id": "smartwatch",
         "nome": "Smartwatch",
-        "preco": 899,
+        "preco": 1199,
         "img": "./api/produtos/smartwatch/smartwatch.jpg"
     },
     {
         "id": "speaker",
         "nome": "Speaker",
-        "preco": 899,
+        "preco": 599,
         "img": "./api/produtos/speaker/speaker.jpg"
     }
 
