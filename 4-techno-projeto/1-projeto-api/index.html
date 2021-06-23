@@ -15,7 +15,13 @@
 
         <header class="header">
             <img class="logo" src="./assets/techno.svg" alt="Techno">
-            <div class="carrinho_menu">{{carrinhoTotal}} | </div>
+            <div class="carrinho_menu">{{carrinhoTotal | numeroPreco }} | {{carrinho.length}} </div>
+            <ul>
+                <li  v-for="(item, index) in carrinho">
+                    <p>{{item.nome}} {{index}} </p>
+                    <button @click="removerItem(index)">X</button>
+                </li>
+            </ul>
         </header>
 
         <section class="produtos">
@@ -53,6 +59,11 @@
                 </div>
             </div>
         </section>
+
+
+        <div class="alerta" :class="{ativo: alertaAtivo}">
+            <p class="alerta_mensagem">{{mensagemAlerta}}</p>
+        </div>
         
     </div>
 
