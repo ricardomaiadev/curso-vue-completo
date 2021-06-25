@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,17 +11,19 @@
     <link rel="stylesheet" href="./style.css">
     <title>Techno</title>
 </head>
+
 <body>
     <div id="app">
 
         <header class="header">
             <img class="logo" src="./assets/techno.svg" alt="Techno">
-            <div class="carrinho_menu" @click=" carrinhoAtivo = true">{{carrinhoTotal | numeroPreco }} | {{carrinho.length}} </div>
+            <div class="carrinho_menu" @click=" carrinhoAtivo = true">{{carrinhoTotal | numeroPreco }} |
+                {{carrinho.length}} </div>
         </header>
 
         <section class="produtos">
             <div v-for=" item in produtos" @click="abrirModal(item.id)" :key="item.id" class="produto">
-                <img :src="item.img" :alt="item.nome" class="produto_img"/>
+                <img :src="item.img" :alt="item.nome" class="produto_img" />
                 <div class="produto_info">
                     <span class="produto_preco">{{item.preco | numeroPreco }}</span>
                     <h2 class="produto_titulo">{{item.nome}}</h2>
@@ -38,9 +41,9 @@
                     <span class="modal_preco">{{produto.preco | numeroPreco }}</span>
                     <h2 class="modal_titulo">{{produto.nome}}</h2>
                     <p>{{produto.descricao}}</p>
-                    <p>{{produto.estoque}}</p>                    
+                    <p>{{produto.estoque}}</p>
                     <button v-if="produto.estoque > 0" class="modal_btn" @click="adicionarItem">Adicionar Item</button>
-                    <button v-else class="modal_btn esgotado" desabled >Produto Esgotado</button>
+                    <button v-else class="modal_btn esgotado" desabled>Produto Esgotado</button>
                 </div>
                 <div class="avaliacoes">
                     <h2 class="avaliacoes_subtitulos">Avaliações</h2>
@@ -60,7 +63,7 @@
                 <h2 class="carrinho_titulo">Carrinho</h2>
                 <div v-if="carrinho.length > 0">
                     <ul class="carrinho_lista">
-                        <li  v-for="(item, index) in carrinho">
+                        <li class="carrinho_item" v-for="(item, index) in carrinho">
                             <p>{{item.nome}} </p>
                             <p class="carrinho_preco">{{item.preco | numeroPreco}} </p>
                             <button class="carrinho_remover" @click="removerItem(index)">X</button>
@@ -72,15 +75,16 @@
                 <p v-else>O carrinho está vazio.</p>
             </div>
         </section>
-        
+
 
 
         <div class="alerta" :class="{ativo: alertaAtivo}">
             <p class="alerta_mensagem">{{mensagemAlerta}}</p>
         </div>
-        
+
     </div>
 
     <script src="./app.js"></script>
 </body>
+
 </html>
