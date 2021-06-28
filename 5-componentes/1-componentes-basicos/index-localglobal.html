@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <componente-local2></componente-local2>
+
+  </div>
+
+  <script>
+    const ComponenteLocal = {
+      name: "ComponenteLocal",
+      data() {
+        return {
+          contar: 20,
+        }
+      },
+      template: `
+      <div>
+      <p>Componente Local1 {{contarDobro}}</p>
+      <p>Segundo {{contar}}</p>
+      </div>
+      `,
+      computed: {
+        contarDobro() {
+          return this.contar * 2;
+        }
+      }
+
+    }
+
+    const ComponenteLocal2 = {
+      name: "ComponenteLocal2",
+      template: `
+      <div>
+      <p>Componente Local 2</p>
+      <componente-global></componente-global>
+      <componente-local></componente-local>
+      </div>
+      `
+    }
+
+    Vue.component("ComponenteGlobal", {
+      template: `<p>Isso é Global</p>`
+    })
+
+    Vue.component("ComponenteLocal", ComponenteLocal)
+
+    const vm = new Vue({
+      el: "#app",
+      components: {
+        ComponenteLocal2,
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>
