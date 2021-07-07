@@ -21,12 +21,27 @@
 
     const ItemProduto = {
       name: "ItemProduto",
-      props: ["nomeFruta"],
+      // props: ["nomeFruta", "total"],
+      props: {
+        nomeFruta: String,
+        total: [Number, String],
+        cor: {
+          type: String,
+          required: true,
+        },
+        tamanho: {
+          type: String,
+          default: "Grande"
+        }
+      },
       template:
         `
       <li>
         <h2>{{nomeFruta}}</h2>
         Esse é o nome: {{nomeFruta}}
+        {{total + 2}}
+        {{cor}}
+        {{tamanho}}
       </li>
       `
     }
@@ -45,8 +60,11 @@
         <item-produto 
         v-for="fruta, index in frutas"
         :key="fruta + index"
-        :nomeFruta="fruta">
-        </item-produto>
+        :nomeFruta="fruta"
+        :total="20"
+        cor="Branco"
+        tamanho="Pequeno"
+        ></item-produto>
       </ul>
       `,
     }
