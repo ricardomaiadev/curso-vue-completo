@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <formulario-acoes></formulario-acoes>
+
+  </div>
+
+  <script type="module">
+
+    const DadosAcoes = {
+      name: "DadosAcao",
+      props: ["acao"],
+      template:
+        `
+      <ul>
+        <li v-for="(dados, chave) in acao">
+          {{chave}}: {{dados}}
+          </li>
+      </ul>
+      `
+    }
+
+    const FormularioAcoes = {
+      name: "FormularioAcoes",
+      components: {
+        DadosAcoes
+      },
+      data() {
+        return {
+          simbolo: "",
+          quote: {},
+        }
+      },
+      template:
+        `
+      <div>
+        {{simbolo}}
+        <input type="text" v-model="simbolo" />
+        <button @click="puxarAcao"> Puxar Ações </button>
+        <dados-acoes :acao="quote"></dados-acoes>
+      </div>
+      `,
+      methods: {
+        puxarAcao() {
+          fetch(`https://api.origamid.dev/stock/${this.simbolo}/quote`)
+            .then(r => r.json())
+            .then(r => {
+              this.quote = r;
+            })
+        }
+      }
+    }
+
+    const vm = new Vue({
+      el: "#app",
+      components: {
+        FormularioAcoes
+      },
+    })
+
+  </script>
+
+</body>
+
+</html>
