@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <modal-principal>
-      <template #header>
-        <p>Esse é o header</p>
+      <template #header="{logo}">
+        <p>Esse é o header {{logo}} </p>
       </template>
-      <template #default>
+      <template v-slot:default="{user}">
+        {{user.nome}}
         <p>Esse é um teste</p>
         <button>Comprar</button>
       </template>
