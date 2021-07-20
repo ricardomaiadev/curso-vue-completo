@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Logo</h1>
+    <h1 @click="mostrarRouter">Logo</h1>
     <nav>
       <router-link to="/">Home</router-link>
       <router-link to="/Cursos">Cursos</router-link>
@@ -12,9 +12,12 @@
 <script>
 
 export default {
-  name: 'App',
-
-}
+    methods: {
+      mostrarRouter() {
+        console.log(this.$route);
+      }
+    }
+};
 </script>
 
 <style>
