@@ -1,10 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Cursos from "./views/Cursos.vue";
-import Curso from "./views/Curso.vue";
-import CursoAulas from "./views/CursoAulas.vue";
-import CursoDescricao from "./views/CursoDescricao.vue";
+const Cursos = () => import("./views/Cursos.vue");
+const Curso = () => import(/* webpackChunkName: "curso" */ "./views/Curso.vue");
+const CursoAulas = () => import(/* webpackChunkName: "curso" */ "./views/CursoAulas.vue");
+const CursoDescricao = () => import(/* webpackChunkName: "curso" */ "./views/CursoDescricao.vue");
+import Acoes from "./views/Acoes.vue";
+import AcoesDados from "./views/AcoesDados.vue";
 
 
 Vue.use(Router);
@@ -15,7 +17,32 @@ export default new Router ({
     routes: [
         {
             path: "/",
-            component: Home
+            components: {
+                default: Home,
+                sidebar: Acoes
+            }
+        },
+        {
+            path: "/origamid",
+            redirect: "/"
+        },
+        {
+            path: "*",
+            redirect: "/"
+        },
+        {
+            path: "/acoes",
+            components: {
+                default: Acoes,
+                sidebar: Home
+            },
+            children: [
+                {
+                    path: ":simbolo",
+                    component: AcoesDados,
+                    props: true
+                } 
+            ]
         },
         {
             path: "/cursos",
@@ -46,5 +73,8 @@ export default new Router ({
                 }
             ]
         }
-    ]
+    ],
+    scrollBehavior() {
+        return window.scrollTo({ top:0, behavior: 'smooth'});
+    }
 })
