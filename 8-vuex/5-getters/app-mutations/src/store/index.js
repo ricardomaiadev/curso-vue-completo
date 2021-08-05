@@ -22,10 +22,15 @@ export default new Vuex.Store({
       }
     ]
   },
+  // getters: {
+  //   livrosLidos(state) {
+  //     return function (lido) {
+  //       return state.livros.filter(livro => livro.lido === lido)
+  //     }
+  //   }
+  // }
   getters: {
-    livrosLidos(state) {
-      return state.livros.filter(livro => livro.lido)
-    }
+    livrosLidos: state => lido => state.livros.filter(livro => livro.lido === lido)
   },
   mutations: {
     COMPLETAR_AULA(state, payload) {
@@ -41,8 +46,8 @@ export default new Vuex.Store({
     },
     puxarAcao(context) {
       fetch(`https://api.origamid.dev/stock/aapl/quote`)
-        .then( r => r.json())
-        .then( r => {
+        .then(r => r.json())
+        .then(r => {
           context.commit("UPDATE_ACAO", r)
         })
     }

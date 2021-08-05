@@ -2,39 +2,39 @@
   <div id="app">
     <ul>
       <li v-for="livro in $store.state.livros" :key="livro.nome">
-        <p>{{livro.nome}}</p>
+        <p>{{ livro.nome }}</p>
       </li>
     </ul>
     <h2>Livros Lidos</h2>
     <ul>
-      <li v-for="livro in livrosLidos" :key="livro.nome">
-        <p>{{livro.nome}}</p>
+      <li v-for="livro in livrosLidos(false)" :key="livro.nome">
+        <p>{{ livro.nome }}</p>
       </li>
     </ul>
-    {{$store.state.acao}}
-    <Aluno/>
-    <Curso/>
+    {{ $store.state.acao }}
+    <Aluno />
+    <Curso />
   </div>
 </template>
 
 <script>
-import Aluno from "@/components/Aluno.vue"
-import Curso from "@/components/Curso.vue"
-import { mapGetters} from "vuex"
+import Aluno from '@/components/Aluno.vue';
+import Curso from '@/components/Curso.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   components: {
     Aluno,
-    Curso
+    Curso,
   },
   computed: {
-    ...mapGetters(["livrosLidos"])
+    ...mapGetters(['livrosLidos']),
   },
   created() {
-    this.$store.dispatch("puxarAcao");
-  }
-}
+    this.$store.dispatch('puxarAcao');
+  },
+};
 </script>
 
 <style>
