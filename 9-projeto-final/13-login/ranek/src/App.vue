@@ -98,6 +98,10 @@ input, textarea {
   margin-bottom: 15px;
 }
 
+label {
+  margin-bottom: 5px;
+}
+
 input:hover,
 input:focus,
 textarea:hover,
