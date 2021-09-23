@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost/ranekapi//wp-json/api/'
+  baseURL: 'https://ricardomaia.ml/api/wp-json/api'
 });
 
 axiosInstance.interceptors.request.use(
@@ -31,10 +31,10 @@ export const api = {
     return axiosInstance.delete(endpoint);
   },
   login(body) {
-    return axios.post("http://localhost/ranekapi//wp-json/jwt-auth/v1/token", body);
+    return axios.post("https://ricardomaia.ml/api/wp-json/jwt-auth/v1/token", body);
   },
   validateToken() {
-    return axiosInstance.post("http://localhost/ranekapi//wp-json/jwt-auth/v1/token/validate");
+    return axiosInstance.post("https://ricardomaia.ml/api/wp-json/jwt-auth/v1/token/validate");
   },
 };
 
