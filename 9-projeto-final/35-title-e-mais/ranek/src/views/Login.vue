@@ -10,7 +10,7 @@
       <ErroNotificacao :erros="erros"/>
     </form>
     <p class="perdeu">
-      <a href="https://localhost/ranekapi/wp-login.php?action=lostpassword" target="_blank">Perdeu a senha? Clique aqui.</a>
+      <a href="https://ricardomaia.ml/api/wp-login.php?action=lostpassword" target="_blank">Perdeu a senha? Clique aqui.</a>
     </p>
     <LoginCriar/>
   </section>
